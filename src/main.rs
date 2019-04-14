@@ -7,31 +7,8 @@ fn main() {
         return;
     }
 
-    let start:i32 = if args.len() > 2 {
-        match &args[1].parse::<i32>(){
-            Ok(num) => *num,
-            Err(_) => 0,
-        }
-    }
-    else {
-        0
-    };
-
-    let end:i32 = {
-        let index: usize;
-        if args.len() > 2 {
-            println!("YO");
-            index = 2;
-        }
-        else {
-            index = 1;
-        }
-        match &args[index].parse::<i32>(){
-            Ok(num) => *num,
-            Err(_) => 0,
-        }
-
-    };
+    let start:i32 = start(&args);
+    let end:i32 = end(&args);
     
     let mut t1 = start;
     let mut t2 = start + 1;
@@ -44,4 +21,32 @@ fn main() {
         t2 = next;
     }
     print!("\n");
+}
+
+fn start(args:&std::vec::Vec<String>) -> i32 {
+    if args.len() > 2 {
+        get_arg(&args, 1)
+    }
+    else {
+        0
+    }
+}
+
+fn end(args:&Vec<String>) -> i32 {
+    let index: usize;
+    if args.len() > 2 {
+        index = 2;
+    }
+    else {
+        index = 1;
+    }
+
+    get_arg(&args, index)
+}
+
+fn get_arg(args:&Vec<String>, index:  usize) -> i32 {
+    match &args[index].parse::<i32>(){
+        Ok(num) => *num,
+        Err(_) => 0,
+    }
 }
