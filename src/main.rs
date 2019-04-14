@@ -7,8 +7,8 @@ fn main() {
         return;
     }
 
-    let start:u32 = if args.len() > 2 {
-        match &args[1].parse::<u32>(){
+    let start:i32 = if args.len() > 2 {
+        match &args[1].parse::<i32>(){
             Ok(num) => *num,
             Err(_) => 0,
         }
@@ -17,23 +17,24 @@ fn main() {
         0
     };
 
-    let end:u32 = {
+    let end:i32 = {
         let index: usize;
         if args.len() > 2 {
+            println!("YO");
             index = 2;
         }
         else {
             index = 1;
         }
-        match &args[index].parse::<u32>(){
+        match &args[index].parse::<i32>(){
             Ok(num) => *num,
             Err(_) => 0,
         }
 
     };
     
-    let mut t1 = 0;
-    let mut t2 = 1;
+    let mut t1 = start;
+    let mut t2 = start + 1;
     let mut next: i32;
 
     for _ in start..end {
