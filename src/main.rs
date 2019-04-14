@@ -7,23 +7,22 @@ fn main() {
         return;
     }
 
-    let start:i32 = start(&args);
-    let end:i32 = end(&args);
+    let start:u64 = start(&args);
+    let end:u64 = end(&args);
     
     let mut t1 = start;
     let mut t2 = start + 1;
-    let mut next: i32;
+    let mut next: u64;
 
     for _ in start..end {
-        print!("{} ", t1);
+        println!("{} ", t1);
         next = t1 + t2;
         t1 = t2;
         t2 = next;
     }
-    print!("\n");
 }
 
-fn start(args:&std::vec::Vec<String>) -> i32 {
+fn start(args:&std::vec::Vec<String>) -> u64 {
     if args.len() > 2 {
         get_arg(&args, 1)
     }
@@ -32,7 +31,7 @@ fn start(args:&std::vec::Vec<String>) -> i32 {
     }
 }
 
-fn end(args:&Vec<String>) -> i32 {
+fn end(args:&Vec<String>) -> u64 {
     let index: usize;
     if args.len() > 2 {
         index = 2;
@@ -44,8 +43,8 @@ fn end(args:&Vec<String>) -> i32 {
     get_arg(&args, index)
 }
 
-fn get_arg(args:&Vec<String>, index:  usize) -> i32 {
-    match &args[index].parse::<i32>(){
+fn get_arg(args:&Vec<String>, index:  usize) -> u64 {
+    match &args[index].parse::<u64>(){
         Ok(num) => *num,
         Err(_) => 0,
     }
